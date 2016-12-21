@@ -1,2 +1,2 @@
-These are the required SobekCM DLLs required to compile this project. It is recommended that you clone the latest code from the
-SobekCM-Web-Application project from GitHut, build the solution, and install the updated DLLs into this project. 
+These are the necessary SobekCM DLLs required to compile this project. It is recommended that you clone the latest code from the
+SobekCM-Web-Application project from GitHut, build the solution, and install the updated DLLs into this project prior to compling it.
