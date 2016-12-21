@@ -1,5 +1,6 @@
 # SobekCM-plugin-endpoint-EDS
-SobekCM-plugin-endpoint-EDS is a plugin for the open-source <a target="_blank" href="http://github.com/MarkVSullivan/SobekCM-Web-Application/">SobekCM Digital Repository</a> software (Mark V. Sullivan, lead developer). It provides a REST API endpoint to support a dynamic search request from the EBSCO Discovery Service&#8482; to include search results from an individual SobekCM-based repository in the its search results.  
+<p>SobekCM-plugin-endpoint-EDS is a plugin for the open-source <a target="_blank" href="https://github.com/MarkVSullivan/SobekCM-Web-Application/">SobekCM Digital Repository</a> software (<a target="_blank" href="https://github.com/MarkVSullivan">Mark V. Sullivan</a>, lead developer). It provides a REST API endpoint to support a dynamic search request from the EBSCO Discovery Service&#8482; to include search results from an individual SobekCM-based repository in the its search results.</p>
+<p>Initial development of this plugin began in collaboration with SobekCM's lead developer Mark V. Sullivan during an excellent training session he provided to me in December 2016.</p>
 <p>The endpoint URL is http://[repository hostname]/engine/plugins/ebsco/[return type]/?t=[search terms].</p>
 <p>The available return types are XML and JSON [case-insensitive].</p> 
 <p>Other query string attributes:</p>
