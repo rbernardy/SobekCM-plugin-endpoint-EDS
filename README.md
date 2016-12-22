@@ -11,3 +11,5 @@
 <li>page: By default SobekCM returns a maximum of 20 results per page. If not used the first page of results is returned. If the page attribute is included it cancels use of any limit_results attribute value.</li>
 </ul>
 <p>Regardless of what query string attributes are used search result stats are returned (depending upon return type), including total items and total titles.</p>
+<hr/>
+<p>Richard Bernardy - <a href="mailto:rbernard@usf.edu">rbernard@usf.edu</a> - 12/22/2016.</p>
