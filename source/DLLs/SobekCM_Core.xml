@@ -3049,6 +3049,15 @@
         <member name="P:SobekCM.Core.Message.EnableExtensionMessage.Errors">
             <summary> Possible list of errors that occurred during the procssing </summary>
         </member>
+        <member name="T:SobekCM.Core.Plugins.PluginInstaller">
+            <summary> Abstract class  that can be used to run custom code during enabling and disabling of the plug-in  </summary>
+        </member>
+        <member name="M:SobekCM.Core.Plugins.PluginInstaller.Enable">
+            <summary> Method to be called when the installer is enabled </summary>
+        </member>
+        <member name="M:SobekCM.Core.Plugins.PluginInstaller.Disable">
+            <summary> Method to be called with the installer is disabled </summary>
+        </member>
         <member name="T:SobekCM.Core.Settings.DbItemViewers.DbItemViewerTypes">
             <summary> All the item viewer information from the database,
             which includes which viewers are added by default, default orders, and the primary key 
@@ -3210,6 +3219,9 @@
         <member name="P:SobekCM.Core.Configuration.Extensions.ExtensionInfo.AdminInfo">
             <summary> Administrative information about an extension/plug-in, such as description,
             authors, permissions, etc..  </summary>
+        </member>
+        <member name="P:SobekCM.Core.Configuration.Extensions.ExtensionInfo.HighestRightsRequired">
+            <summary> Flag indicates if the highest rights are required to enable/disable this plug-in </summary>
         </member>
         <member name="T:SobekCM.Core.Configuration.Extensions.ExtensionKeyValueConfiguration">
             <summary> A named collection of key value pairs from the extension configuration </summary>
@@ -4372,6 +4384,16 @@
         <member name="P:SobekCM.Core.Builder.Builder_Module_Set_Info.Used_Count_XML">
             <summary> Number of times this builder module set is referenced, for XML serialization purposes </summary>
         </member>
+        <member name="T:SobekCM.Core.Settings.UI_Settings">
+            <summary> System-wide settings related to UI elements, such as themes for helper libraries, etc.. </summary>
+        </member>
+        <member name="M:SobekCM.Core.Settings.UI_Settings.#ctor">
+            <summary> Constructor for a new instance of the UI_Settings class </summary>
+        </member>
+        <member name="P:SobekCM.Core.Settings.UI_Settings.Ace_Editor_Theme">
+            <summary> Theme for the Ace Editor, used for CSS and javascript editing, as well as TEI editing if that 
+            plug-in is enabled </summary>
+        </member>
         <member name="T:SobekCM.Core.UI_Configuration.StaticResources.StaticResources_Configuration">
             <summary> Class holds all the possible static resource values for the user interface to use </summary>
         </member>
@@ -4389,6 +4411,9 @@
         </member>
         <member name="P:SobekCM.Core.UI_Configuration.StaticResources.StaticResources_Configuration.Sixteen_Px_Feed_Img">
             <summary> URL for the default resource '16px-feed-icon.svg.png' file ( http://cdn.sobekrepository.org/images/misc/16px-Feed-icon.svg.png by default)</summary>
+        </member>
+        <member name="P:SobekCM.Core.UI_Configuration.StaticResources.StaticResources_Configuration.Ace_Js">
+            <summary> URL for the ACE editor javascript library 'ace.js' file ( http://cdn.sobekrepository.org/includes/ace/1.2.5/ace.js by default)</summary>
         </member>
         <member name="P:SobekCM.Core.UI_Configuration.StaticResources.StaticResources_Configuration.Add_Geospatial_Img">
             <summary> URL for the default resource 'add_geospatial_icon.png' file ( http://cdn.sobekrepository.org/images/misc/add_geospatial_icon.png by default)</summary>
@@ -9142,6 +9167,10 @@
             <param name="StoreObject"> Fully built web content page (or redirect) object </param>
             <param name="Tracer"> Trace object keeps a list of each method executed and important milestones in rendering</param>
         </member>
+        <member name="M:SobekCM.Core.MemoryMgmt.CachedDataManager_WebContentServices.Clear_Special_Missing_Page(SobekCM.Tools.Custom_Tracer)">
+            <summary> Clear the special missing page from the cache </summary>
+            <param name="Tracer"> Trace object keeps a list of each method executed and important milestones in rendering</param>
+        </member>
         <member name="M:SobekCM.Core.MemoryMgmt.CachedDataManager_WebContentServices.Clear_Page_Details(System.Int32)">
             <summary> Clears a single web content page (or redirect) detail objects that is currently cached (engine and client side) </summary>
             <param name="WebContentID"> Primary key for the web content page to clear</param>
@@ -11862,6 +11891,9 @@
         <member name="P:SobekCM.Core.Settings.InstanceWide_Settings.System">
             <summary> Top-level settings that control basic operation and appearance of the entire SobekCM instance </summary>
         </member>
+        <member name="P:SobekCM.Core.Settings.InstanceWide_Settings.UI">
+            <summary> Top-level settings that UI elements, such as themes for helper libraries, etc..  </summary>
+        </member>
         <member name="P:SobekCM.Core.Settings.InstanceWide_Settings.Database_Connection">
             <summary> Database connection string built from the system config file (usually sits in a config subfolder)</summary>
         </member>
@@ -12367,6 +12399,9 @@
             <param name="Skin_Code"> Code for this HTML skin</param>
             <param name="CSS_Style"> Additional CSS Stylesheet to be included for this HTML skin</param>
         </member>
+        <member name="F:SobekCM.Core.Skins.Complete_Web_Skin_Object.Javascript_File">
+            <summary> Additional Javascript file to be included for this skin </summary>
+        </member>
         <member name="P:SobekCM.Core.Skins.Complete_Web_Skin_Object.Base_Skin_Code">
             <summary> Code for the base skin which this skin derives from  </summary>
             <remarks> The base skin is used for many of the common design image files which are reused, such as button images, tab images, etc..<br /><br />
@@ -12459,17 +12494,15 @@
         <member name="M:SobekCM.Core.Skins.Web_Skin_Object.#ctor">
             <summary> Constructor for a new instance of the Web_Skin_Object class </summary>
         </member>
+        <member name="M:SobekCM.Core.Skins.Web_Skin_Object.#ctor(System.String,System.String)">
+            <summary> Constructor for a new instance of the Web_Skin_Object class </summary>
+            <param name="Skin_Code"> Code for this HTML skin</param>
+            <param name="Base_Skin_Code"> Code for the base HTML skin which this skin derives from</param>
+        </member>
         <member name="M:SobekCM.Core.Skins.Web_Skin_Object.#ctor(System.String,System.String,System.String)">
             <summary> Constructor for a new instance of the Web_Skin_Object class </summary>
             <param name="Skin_Code"> Code for this HTML skin</param>
             <param name="Base_Skin_Code"> Code for the base HTML skin which this skin derives from</param>
-            <param name="CSS_Style"> Additional CSS Stylesheet to be included for this HTML skin</param>
-        </member>
-        <member name="M:SobekCM.Core.Skins.Web_Skin_Object.#ctor(System.String,System.String,System.String,System.String)">
-            <summary> Constructor for a new instance of the Web_Skin_Object class </summary>
-            <param name="Skin_Code"> Code for this HTML skin</param>
-            <param name="Base_Skin_Code"> Code for the base HTML skin which this skin derives from</param>
-            <param name="CSS_Style"> Additional CSS Stylesheet to be included for this HTML skin</param>
             <param name="Banner_HTML"> Code for the banner to use, if this is set to override the banner</param>
         </member>
         <member name="M:SobekCM.Core.Skins.Web_Skin_Object.ShouldSerializeSuppress_Top_Navigation">
@@ -12515,6 +12548,9 @@
         <member name="P:SobekCM.Core.Skins.Web_Skin_Object.CSS_Style">
             <summary> Additional CSS Stylesheet to be included for this skin </summary>
             <remarks> The standard SobekCM stylesheet is always included, but this stylesheet can override any styles from the standard </remarks>
+        </member>
+        <member name="P:SobekCM.Core.Skins.Web_Skin_Object.Javascript">
+            <summary> Additional Javascript file to be included for this skin </summary>
         </member>
         <member name="P:SobekCM.Core.Skins.Web_Skin_Object.Skin_Code">
             <summary> Code for this skin </summary>

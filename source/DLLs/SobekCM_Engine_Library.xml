@@ -769,6 +769,11 @@
             <param name="Tracer"></param>
             <returns> Object with all the information and source text for the special top-level missing web content page </returns>
         </member>
+        <member name="M:SobekCM.Core.Client.SobekEngineClient_WebContentEndpoints.Clear_Special_Missing_Page(SobekCM.Tools.Custom_Tracer)">
+            <summary> Gets the special missing web content page, used when a requested resource is missing </summary>
+            <param name="Tracer"></param>
+            <returns> Object with all the information and source text for the special top-level missing web content page </returns>
+        </member>
         <member name="M:SobekCM.Core.Client.SobekEngineClient_WebContentEndpoints.Get_Single_Milestones(System.Int32,SobekCM.Tools.Custom_Tracer)">
             <summary> Get the list of milestones affecting a single (non aggregation affiliated) static web content page </summary>
             <param name="WebContentID"> Primary key to the web page in question </param>
@@ -2489,103 +2494,6 @@
         <member name="T:SobekCM.Engine_Library.Endpoints.DataServices">
             <summary> Endpoint supports services related to data-specific digital resources </summary>
         </member>
-        <member name="T:SobekCM.Engine_Library.Endpoints.ResultsServices">
-            <summary> Endpoint supports services related to search results (or item browses) across the 
-            entire instance or a subset of aggregations </summary>
-        </member>
-        <member name="M:SobekCM.Engine_Library.Endpoints.ResultsServices.Get_Search_Statistics(System.Web.HttpResponse,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,SobekCM.Core.Configuration.Engine.Microservice_Endpoint_Protocol_Enum,System.Boolean)">
-            <summary> Get just the search statistics information for a search or browse </summary>
-            <param name="Response"></param>
-            <param name="UrlSegments"></param>
-            <param name="QueryString"></param>
-            <param name="Protocol"></param>
-            <param name="IsDebug"></param>
-        </member>
-        <member name="M:SobekCM.Engine_Library.Endpoints.ResultsServices.Get_Search_Results_Page(System.Web.HttpResponse,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,SobekCM.Core.Configuration.Engine.Microservice_Endpoint_Protocol_Enum,System.Boolean)">
-            <summary> Get just the search statistics information for a search or browse </summary>
-            <param name="Response"></param>
-            <param name="UrlSegments"></param>
-            <param name="QueryString"></param>
-            <param name="Protocol"></param>
-            <param name="IsDebug"></param>
-        </member>
-        <member name="M:SobekCM.Engine_Library.Endpoints.ResultsServices.Get_Search_Results_Legacy(System.Web.HttpResponse,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,SobekCM.Core.Configuration.Engine.Microservice_Endpoint_Protocol_Enum,System.Boolean)">
-            <summary> Gets the search results and returns them in the legacy format supported prior to v5.0 </summary>
-            <param name="Response"></param>
-            <param name="UrlSegments"></param>
-            <param name="QueryString"></param>
-            <param name="Protocol"></param>
-            <param name="IsDebug"></param>
-        </member>
-        <member name="M:SobekCM.Engine_Library.Endpoints.ResultsServices.legacy_json_display_search_results(System.IO.TextWriter,SobekCM.Core.Results.Results_Arguments,SobekCM.Core.Results.Search_Results_Statistics,System.Collections.Generic.List{SobekCM.Core.Results.iSearch_Title_Result})">
-            <summary> Writes the search or browse information in JSON format directly to the output stream  </summary>
-            <param name="Output"> Stream to which to write the JSON search or browse information </param>
-            <param name="Args"></param>
-            <param name="ResultsStats"></param>
-            <param name="ResultsPage"></param>
-        </member>
-        <member name="M:SobekCM.Engine_Library.Endpoints.ResultsServices.legacy_xml_display_search_results(System.IO.TextWriter,SobekCM.Core.Results.Results_Arguments,SobekCM.Core.Results.Search_Results_Statistics,System.Collections.Generic.List{SobekCM.Core.Results.iSearch_Title_Result})">
-            <summary> Display search results in simple XML format </summary>
-            <param name="Output"> Stream to which to write the text for this main writer </param>
-            <param name="Args"></param>
-            <param name="ResultsStats"></param>
-            <param name="ResultsPage"></param>
-        </member>
-        <member name="M:SobekCM.Engine_Library.Endpoints.ResultsServices.Get_Search_Results(SobekCM.Core.Results.Results_Arguments,SobekCM.Core.Aggregations.Complete_Item_Aggregation,System.Boolean,SobekCM.Tools.Custom_Tracer,SobekCM.Core.Results.Search_Results_Statistics@,System.Collections.Generic.List{SobekCM.Core.Results.iSearch_Title_Result}@)">
-            <summary> Performs a search ( or retrieves the search results from the cache ) and outputs the results and search url used  </summary>
-            <param name="Current_Mode"> Mode / navigation information for the current request</param>
-            <param name="Aggregation_Object"> Object for the current aggregation object, against which this search is performed </param>
-            <param name="Include_Private_Items"></param>
-            <param name="Tracer"> Trace object keeps a list of each method executed and important milestones in rendering </param>
-            <param name="Complete_Result_Set_Info"> [OUT] Information about the entire set of results </param>
-            <param name="Paged_Results"> [OUT] List of search results for the requested page of results </param>
-        </member>
-        <member name="M:SobekCM.Engine_Library.Endpoints.ResultsServices.Split_Clean_Search_Terms_Fields(System.String,System.String,SobekCM.Core.Navigation.Search_Type_Enum,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},SobekCM.Core.Navigation.Search_Precision_Type_Enum,System.Char)">
-            <summary> Takes the search string and search fields from the URL and parses them, according to the search type,
-            into a collection of terms and a collection of fields. Stop words are also suppressed here </summary>
-            <param name="Search_String">Search string from the SobekCM search results URL </param>
-            <param name="Search_Fields">Search fields from the SobekCM search results URL </param>
-            <param name="Search_Type"> Type of search currently being performed (sets how it is parsed and default index)</param>
-            <param name="Output_Terms"> List takes the results of the parsing of the actual search terms </param>
-            <param name="Output_Fields"> List takes the results of the parsing of the actual (and implied) search fields </param>
-            <param name="Search_Stop_Words"> List of all stop words ignored during metadata searching (such as 'The', 'A', etc..) </param>
-            <param name="Search_Precision"> Search precision for this search ( i.e., exact, contains, stemmed, thesaurus lookup )</param>
-            <param name="Delimiter_Character"> Character used as delimiter between different components of an advanced search</param>
-        </member>
-        <member name="T:SobekCM.Engine_Library.Endpoints.ResultsServices.ResultsEndpointErrorEnum">
-            <summary> Enumeration of errors that may be encountered during these processes </summary>
-        </member>
-        <member name="F:SobekCM.Engine_Library.Endpoints.ResultsServices.ResultsEndpointErrorEnum.NONE">
-            <summary> No exception or error detected. (Everything is OK) </summary>
-        </member>
-        <member name="F:SobekCM.Engine_Library.Endpoints.ResultsServices.ResultsEndpointErrorEnum.Unknown">
-            <summary> An unknown exception was caught during this process </summary>
-        </member>
-        <member name="F:SobekCM.Engine_Library.Endpoints.ResultsServices.ResultsEndpointErrorEnum.Database_Exception">
-            <summary> Unknown database exception was caught during this process </summary>
-        </member>
-        <member name="F:SobekCM.Engine_Library.Endpoints.ResultsServices.ResultsEndpointErrorEnum.Database_Timeout_Exception">
-            <summary> Timeout occurred while querying the database  </summary>
-        </member>
-        <member name="F:SobekCM.Engine_Library.Endpoints.ResultsServices.ResultsEndpointErrorEnum.Solr_Exception">
-            <summary> Exception was encountered while querying the solr/lucene indexes </summary>
-        </member>
-        <member name="M:SobekCM.Engine_Library.Endpoints.EbscoServices.EBSCO_Results_XML(System.Web.HttpResponse,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,SobekCM.Core.Configuration.Engine.Microservice_Endpoint_Protocol_Enum,System.Boolean)">
-            <summary> Get just the search statistics information for a search or browse </summary>
-            <param name="Response"></param>
-            <param name="UrlSegments"></param>
-            <param name="QueryString"></param>
-            <param name="Protocol"></param>
-            <param name="IsDebug"></param>
-        </member>
-        <member name="M:SobekCM.Engine_Library.Endpoints.EbscoServices.EBSCO_Results_JSON(System.Web.HttpResponse,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,SobekCM.Core.Configuration.Engine.Microservice_Endpoint_Protocol_Enum,System.Boolean)">
-            <summary> Get just the search statistics information for a search or browse </summary>
-            <param name="Response"></param>
-            <param name="UrlSegments"></param>
-            <param name="QueryString"></param>
-            <param name="Protocol"></param>
-            <param name="IsDebug"></param>
-        </member>
         <member name="T:SobekCM.Engine_Library.Endpoints.ItemServices">
             <summary> Class supports all the item-level services provided by the SobekCM engine </summary>
         </member>
@@ -2768,6 +2676,87 @@
             <param name="RequestUserLanguages"> List of user languages requested (via browser settings) </param>
             <param name="Tracer">The tracer.</param>
             <returns> Fully built navigation controller object </returns>
+        </member>
+        <member name="T:SobekCM.Engine_Library.Endpoints.ResultsServices">
+            <summary> Endpoint supports services related to search results (or item browses) across the 
+            entire instance or a subset of aggregations </summary>
+        </member>
+        <member name="M:SobekCM.Engine_Library.Endpoints.ResultsServices.Get_Search_Statistics(System.Web.HttpResponse,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,SobekCM.Core.Configuration.Engine.Microservice_Endpoint_Protocol_Enum,System.Boolean)">
+            <summary> Get just the search statistics information for a search or browse </summary>
+            <param name="Response"></param>
+            <param name="UrlSegments"></param>
+            <param name="QueryString"></param>
+            <param name="Protocol"></param>
+            <param name="IsDebug"></param>
+        </member>
+        <member name="M:SobekCM.Engine_Library.Endpoints.ResultsServices.Get_Search_Results_Page(System.Web.HttpResponse,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,SobekCM.Core.Configuration.Engine.Microservice_Endpoint_Protocol_Enum,System.Boolean)">
+            <summary> Get just the search statistics information for a search or browse </summary>
+            <param name="Response"></param>
+            <param name="UrlSegments"></param>
+            <param name="QueryString"></param>
+            <param name="Protocol"></param>
+            <param name="IsDebug"></param>
+        </member>
+        <member name="M:SobekCM.Engine_Library.Endpoints.ResultsServices.Get_Search_Results_Legacy(System.Web.HttpResponse,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,SobekCM.Core.Configuration.Engine.Microservice_Endpoint_Protocol_Enum,System.Boolean)">
+            <summary> Gets the search results and returns them in the legacy format supported prior to v5.0 </summary>
+            <param name="Response"></param>
+            <param name="UrlSegments"></param>
+            <param name="QueryString"></param>
+            <param name="Protocol"></param>
+            <param name="IsDebug"></param>
+        </member>
+        <member name="M:SobekCM.Engine_Library.Endpoints.ResultsServices.legacy_json_display_search_results(System.IO.TextWriter,SobekCM.Core.Results.Results_Arguments,SobekCM.Core.Results.Search_Results_Statistics,System.Collections.Generic.List{SobekCM.Core.Results.iSearch_Title_Result})">
+            <summary> Writes the search or browse information in JSON format directly to the output stream  </summary>
+            <param name="Output"> Stream to which to write the JSON search or browse information </param>
+            <param name="Args"></param>
+            <param name="ResultsStats"></param>
+            <param name="ResultsPage"></param>
+        </member>
+        <member name="M:SobekCM.Engine_Library.Endpoints.ResultsServices.legacy_xml_display_search_results(System.IO.TextWriter,SobekCM.Core.Results.Results_Arguments,SobekCM.Core.Results.Search_Results_Statistics,System.Collections.Generic.List{SobekCM.Core.Results.iSearch_Title_Result})">
+            <summary> Display search results in simple XML format </summary>
+            <param name="Output"> Stream to which to write the text for this main writer </param>
+            <param name="Args"></param>
+            <param name="ResultsStats"></param>
+            <param name="ResultsPage"></param>
+        </member>
+        <member name="M:SobekCM.Engine_Library.Endpoints.ResultsServices.Get_Search_Results(SobekCM.Core.Results.Results_Arguments,SobekCM.Core.Aggregations.Complete_Item_Aggregation,System.Boolean,SobekCM.Tools.Custom_Tracer,SobekCM.Core.Results.Search_Results_Statistics@,System.Collections.Generic.List{SobekCM.Core.Results.iSearch_Title_Result}@)">
+            <summary> Performs a search ( or retrieves the search results from the cache ) and outputs the results and search url used  </summary>
+            <param name="Current_Mode"> Mode / navigation information for the current request</param>
+            <param name="Aggregation_Object"> Object for the current aggregation object, against which this search is performed </param>
+            <param name="Include_Private_Items"></param>
+            <param name="Tracer"> Trace object keeps a list of each method executed and important milestones in rendering </param>
+            <param name="Complete_Result_Set_Info"> [OUT] Information about the entire set of results </param>
+            <param name="Paged_Results"> [OUT] List of search results for the requested page of results </param>
+        </member>
+        <member name="M:SobekCM.Engine_Library.Endpoints.ResultsServices.Split_Clean_Search_Terms_Fields(System.String,System.String,SobekCM.Core.Navigation.Search_Type_Enum,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},SobekCM.Core.Navigation.Search_Precision_Type_Enum,System.Char)">
+            <summary> Takes the search string and search fields from the URL and parses them, according to the search type,
+            into a collection of terms and a collection of fields. Stop words are also suppressed here </summary>
+            <param name="Search_String">Search string from the SobekCM search results URL </param>
+            <param name="Search_Fields">Search fields from the SobekCM search results URL </param>
+            <param name="Search_Type"> Type of search currently being performed (sets how it is parsed and default index)</param>
+            <param name="Output_Terms"> List takes the results of the parsing of the actual search terms </param>
+            <param name="Output_Fields"> List takes the results of the parsing of the actual (and implied) search fields </param>
+            <param name="Search_Stop_Words"> List of all stop words ignored during metadata searching (such as 'The', 'A', etc..) </param>
+            <param name="Search_Precision"> Search precision for this search ( i.e., exact, contains, stemmed, thesaurus lookup )</param>
+            <param name="Delimiter_Character"> Character used as delimiter between different components of an advanced search</param>
+        </member>
+        <member name="T:SobekCM.Engine_Library.Endpoints.ResultsServices.ResultsEndpointErrorEnum">
+            <summary> Enumeration of errors that may be encountered during these processes </summary>
+        </member>
+        <member name="F:SobekCM.Engine_Library.Endpoints.ResultsServices.ResultsEndpointErrorEnum.NONE">
+            <summary> No exception or error detected. (Everything is OK) </summary>
+        </member>
+        <member name="F:SobekCM.Engine_Library.Endpoints.ResultsServices.ResultsEndpointErrorEnum.Unknown">
+            <summary> An unknown exception was caught during this process </summary>
+        </member>
+        <member name="F:SobekCM.Engine_Library.Endpoints.ResultsServices.ResultsEndpointErrorEnum.Database_Exception">
+            <summary> Unknown database exception was caught during this process </summary>
+        </member>
+        <member name="F:SobekCM.Engine_Library.Endpoints.ResultsServices.ResultsEndpointErrorEnum.Database_Timeout_Exception">
+            <summary> Timeout occurred while querying the database  </summary>
+        </member>
+        <member name="F:SobekCM.Engine_Library.Endpoints.ResultsServices.ResultsEndpointErrorEnum.Solr_Exception">
+            <summary> Exception was encountered while querying the solr/lucene indexes </summary>
         </member>
         <member name="T:SobekCM.Engine_Library.Endpoints.WebContentServices">
             <summary> Endpoint supports services related to the static web content, CMS functionality </summary>
@@ -5233,6 +5222,9 @@
         </member>
         <member name="M:SobekCM.Engine_Library.MicroserviceHandler.#cctor">
             <summary> Static constructor </summary>
+        </member>
+        <member name="M:SobekCM.Engine_Library.MicroserviceHandler.Clear">
+            <summary> Clear the collection dictionaries used to save having to reload objects, etc.. </summary>
         </member>
         <member name="M:SobekCM.Engine_Library.MicroserviceHandler.ProcessRequest(System.Web.HttpContext)">
             <summary> Processes the request </summary>
