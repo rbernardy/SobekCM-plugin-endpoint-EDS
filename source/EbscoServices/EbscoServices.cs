@@ -214,8 +214,8 @@ namespace EbscoServices
                         
                         Response.Output.WriteLine("  <result resultnum=\"" + resultnum + "\" bibid=\"" + bibid + "\" vid=\"" + vid + "\">");
                         Response.Output.WriteLine("    <title>" + HttpUtility.HtmlEncode(title) + "</title>");
-                        Response.Output.WriteLine("    <url_item>" + Engine_ApplicationCache_Gateway.Settings.Servers.Base_URL + bibid + "/" + vid + "</url_item>");
-                   
+                        Response.Output.WriteLine("    <url_item>" + Engine_ApplicationCache_Gateway.Settings.Servers.Application_Server_URL + bibid + "/" + vid + "/</url_item>");
+
                         if (!String.IsNullOrEmpty(thumbnail))
                         {
                             try
@@ -487,7 +487,7 @@ namespace EbscoServices
 
                     Response.Output.Write("{ \"bibid\":\"" + bibid + "\", \"vid\":\"" + vid + "\", ");
                     Response.Output.Write("\"title\":\"" + HttpUtility.HtmlEncode(title) + "\",");
-                    Response.Output.Write("\"url_item\":\"" + Engine_ApplicationCache_Gateway.Settings.Servers.Base_URL + bibid + "/" + vid + "\",");
+                    Response.Output.Write("\"url_item\":\"" + Engine_ApplicationCache_Gateway.Settings.Servers.Application_Server_URL + bibid + "/" + vid + "/\",");
                     Response.Output.Write("\"url_thumbnail\":\"" + Engine_ApplicationCache_Gateway.Settings.Servers.Image_URL +
                                               SobekFileSystem.AssociFilePath(bibid, vid).Replace("\\", "/") + thumbnail + "\"");
 
