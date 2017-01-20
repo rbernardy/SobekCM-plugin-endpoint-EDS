@@ -13,3 +13,4 @@
 <p>Regardless of what query string attributes are used search result stats are returned (depending upon return type), including total items and total titles.</p>
 <hr/>
 <p>Richard Bernardy - <a href="mailto:rbernard@usf.edu">rbernard@usf.edu</a> - 12/22/2016.</p>
+<p>I'd appreciate a courtesy notification by email if you find this plugin useful and are using it in your SobekCM-based respository.</p>
